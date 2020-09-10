@@ -22,11 +22,6 @@ if __name__ == '__main__':
 
         #Remove o limite de cache do jinja, de 50 para -> infinito
         app.jinja_env.cache = {}
-        app.run(   
-            host = FLASK_RUN_HOST,
-            port = FLASK_RUN_PORT,
-            debug = FLASK_DEBUG,
-            threaded = FLASK_THREADED
-        )
+        app.run(host = FLASK_RUN_HOST, port = FLASK_RUN_PORT, debug = FLASK_DEBUG, threaded = FLASK_THREADED)
     except Exception as e:
         print(e)
