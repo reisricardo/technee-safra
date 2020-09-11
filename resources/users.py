@@ -56,7 +56,7 @@ class user_authenticate(Resource):
                             'User' : payload,
                             'Access' : {
                                 'AccessToken' : access_token,
-                                'RefreshToken' : refresh_token                                                            
+                                'RefreshToken' : refresh_token                                                          
                             }
                         },
                         'StatusID' : 'users_successful_authentication',
@@ -68,6 +68,7 @@ class user_authenticate(Resource):
                     })
                     resp.status_code = 200
                     set_access_cookies(resp, access_token)
+                    set_refresh_cookies(resp, refresh_token)
                 
                 else:
                     resp = jsonify({                        
@@ -112,4 +113,27 @@ class user_authenticate(Resource):
             resp.status_code = 500
         finally:
             return resp
-        
+
+@users_collection.route('/<int:identification>/logout')
+class user_logout(Resource):
+    @jwt_required
+    def delete(self, identification):
+        '''
+        Performs the user's logout, invalidating the access tokens
+        '''
+
+        url = request_handler(request)
+        args = url.get_args()
+
+        resp = jsonify({            
+            'StatusID' : 'users_successful_logout',
+            'StatusMessage' : 'Successful logout.',
+            'Links' : {
+                'Self' : url.self_url(),
+                'Next' : SITE_URL + LOGIN_URL               
+            }
+        })
+        resp.status_code = 200
+        unset_jwt_cookies(resp)
+
+        return resp

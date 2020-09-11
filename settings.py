@@ -1,4 +1,5 @@
 import uuid
+import base64 
 
 ############# Configurações da aplicação #############
 FLASK_DEBUG = True
