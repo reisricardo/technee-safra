@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Required Meta Tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="metro4:init" content="true">
+
+        <!-- Metro 4 CSS -->
+        <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css">
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+
+        <!-- Title -->
+        <title>Safra Open :: Contrato</title>
+
+    </head>
+    <style>
+        .sidebar-menu li a {            
+            text-transform: none!important;            
+        }
+        .fg-blue-safra{
+            color: #1E2044!important;
+        }
+        .bd-blue-safra{
+            border-color: #1E2044!important;
+        }
+        .bg-blue-safra{
+            background-color: #1E2044!important;
+        }
+        .bg-blue-safra-hover:hover{
+            background-color: #1E2044!important;
+        }
+        .fg-gold-safra{
+            color: #D4AD68!important;
+        }
+        .bd-gold-safra{
+            border-color: #D4AD68!important;
+        }
+        .bg-gold-safra{
+            background-color: #D4AD68!important;
+        }
+        .bg-gold-safra-hover:hover{
+            background-color: #D4AD68!important;
+        }
+
+        .sidebar.on-left.open.sidebar-shadow, .sidebar.on-left.static.sidebar-shadow {
+            -webkit-box-shadow: 1px 0 0 0 rgba(0,0,0,.15);
+            box-shadow: 1px 0 0 0 rgba(0,0,0,.15);
+        }
+        .z-depth-4 {
+            -webkit-box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+            box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+        }
+        .z-depth-16, .open {
+            -webkit-box-shadow: 0 8px 10px -5px rgba(0,0,0,.2), 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12)!important;
+            box-shadow: 0 8px 10px -5px rgba(0,0,0,.2), 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12)!important;
+        }
+        @media screen and (max-width: 600px) {
+            .icon-sidebar {
+                visibility: hidden;            
+            }
+            aside.open {
+                width: -webkit-fill-available!important;
+            }
+            .form-auth {
+                box-shadow: none!important;
+            }
+        }
+        /* Scrollbar Customize */
+
+
+        /* width */
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+
+        /* Track */
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+
+        /* Handle */
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+
+        /* Handle on hover */
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+    </style>
+    <body>
+        
+        <div class="w-100" style="height: 100vh;">
+            <div class="p-4">
+                <img src="https://www.safra.com.br/lumis-theme/br/com/bancosafra/safranet/theme/safranet/assets/img/logo-safra.svg" height="22.5">                    
+            </div>
+            <div class="d-flex d-flex flex-justify-center flex-align-center flex-column" style="height: calc(100vh - 57.25px);">
+                <div class="p-8 form-auth" style="box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05);border-radius: 4px;width: 400px;">
+                    <div class="row d-flex flex-justify-center flex-align-center flex-column text-center"> 
+                        <strong>                            
+                            <span class="fg-gold-safra">Termo de aceite</span>
+                        </strong>                                       
+                    </div>
+                    <div class="" style="max-height: 450px;overflow-y:scroll">
+                        <div class="p-2">
+                            Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Lati2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. itten in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                    
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <button onClick="authorize(0)" class="button w-100 bg-white bg-blue-safra-hover fg-white-hover bd-blue-safra fg-blue-safra mt-4" style="border-radius:4px">Não</button>  
+                        <span class="mr-8"></span>
+                        <button onClick="authorize(1)" class="button w-100 bg-white bg-gold-safra-hover fg-white-hover bd-gold-safra fg-gold-safra mt-4" style="border-radius:4px">Aceito</button> 
+                    </div>
+                    
+                </div>                
+            </div>            
+        </div>
+
+        <!-- Metro 4 Theme-->
+        <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
+
+        <script>
+            function authorize(status){
+                console.log(status)
+                if(status == 1){
+                    window.location.href = 'home'
+                }else{
+                    window.location.href = 'login'
+                }
+            }
+            function validateAccess(){
+                let identification = $("#identification-field").val()
+                let password = $("#password-field").val()
+                
+                if(identification == 12345678901233 && password == 123456){
+                    window.location.href = 'contract'
+                }
+            }
+            function showInfosAccounts(){
+                console.log("Aqui")
+                let toast = Metro.toast.create;
+                toast('A autenticação é mockada para o seguinte usuário: <br>Mark Z. da Silva - Identificação: 12345678901233 / Senha: 123456<br>', null, 5000, "bg-white bd-gold-safra border fg-gold-safra");
+            }
+        </script>
+    </body>    
+</html>

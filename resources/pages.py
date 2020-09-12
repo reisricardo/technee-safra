@@ -22,3 +22,31 @@ class render_home(Resource):
         resp.headers['Content-Type'] = "text/html"
 
         return resp
+
+@pages_collection.route('/login')
+class render_login(Resource):
+    def get(self):
+        '''
+        Loads the homepage
+        '''
+
+        resp = make_response(render_template('login.html', 
+        api_url = API_URL
+        ))
+        resp.headers['Content-Type'] = "text/html"
+
+        return resp
+
+@pages_collection.route('/contract')
+class render_login(Resource):
+    def get(self):
+        '''
+        Loads the homepage
+        '''
+
+        resp = make_response(render_template('contract.html', 
+        api_url = API_URL
+        ))
+        resp.headers['Content-Type'] = "text/html"
+
+        return resp
