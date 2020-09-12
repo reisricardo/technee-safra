@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Required Meta Tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="metro4:init" content="true">
+
+        <!-- Metro 4 CSS -->
+        <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css">
+
+        <!-- Google Icon Font -->
+        <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+
+        <!-- Title -->
+        <title>Bank ALL :: Início</title>
+
+    </head>
+    <style>
+        .sidebar-menu li a {            
+            text-transform: none!important;            
+        }
+        .fg-blue-safra{
+            color: #1E2044!important;
+        }
+        .bd-blue-safra{
+            border-color: #1E2044!important;
+        }
+        .bg-blue-safra{
+            background-color: #1E2044!important;
+        }
+        .fg-gold-safra{
+            color: #D4AD68!important;
+        }
+        .bd-gold-safra{
+            border-color: #D4AD68!important;
+        }
+        .bg-gold-safra{
+            background-color: #D4AD68!important;
+        }
+
+        .sidebar.on-left.open.sidebar-shadow, .sidebar.on-left.static.sidebar-shadow {
+            -webkit-box-shadow: 1px 0 0 0 rgba(0,0,0,.15);
+            box-shadow: 1px 0 0 0 rgba(0,0,0,.15);
+        }
+        .z-depth-4 {
+            -webkit-box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+            box-shadow: 0 2px 4px -1px rgba(0,0,0,.2), 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12);
+        }
+        .z-depth-16, .open {
+            -webkit-box-shadow: 0 8px 10px -5px rgba(0,0,0,.2), 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12)!important;
+            box-shadow: 0 8px 10px -5px rgba(0,0,0,.2), 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12)!important;
+        }
+        @media screen and (max-width: 600px) {
+            .icon-sidebar {
+                visibility: hidden;            
+            }
+            aside.open {
+                width: -webkit-fill-available!important;
+            }
+        }
+        /* Scrollbar Customize */
+
+
+        /* width */
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+
+        /* Track */
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+
+        /* Handle */
+
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+
+
+        /* Handle on hover */
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+    </style>
+    <body style="background-color: #f8f8f8;">
+
+        <aside class="sidebar pos-fixed z-2" data-role="sidebar" data-toggle="#sidebar-toggle-3" id="sb3" data-on-open="hiddenIconMenu()" data-on-close="showIconMenu()" data-shift=".shifted-content">
+            <div class="sidebar-header bg-light">
+                <a href="/" class="fg-darkGray sub-action z-3" onclick="Metro.sidebar.close('#sb3'); return false;"><span class="mif-cross-light"></span></a>                
+                <div class="d-flex flex-column flex-justify-center flex-align-center h-100">
+                    <div class="avatar">
+                        <img src="http://127.0.0.1/safra-open/assets/mark2.jpg" width="60" height="60" style="border-radius: 50%;">                        
+                    </div>
+                    <span class="title fg-darkGray">Olá, <b>Mark Z. da Silva</b></span>
+                    <span class="subtitle text-muted">
+                        
+                        <span>123.456.789-01233</span>
+                    </span>
+                </div>
+                
+            </div>
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="home" class="d-flex flex-align-center flex-justify-between">
+                        <span class="fg-blue-safra">
+                            <span class="material-icons icon">account_balance</span>
+                            <span>Início</span>
+                        </span>                        
+                        <span class="mif-chevron-right icon-sidebar fg-gold-safra pr-4"></span>
+                    </a>                     
+                </li>
+                <li>
+                    <a class="d-flex flex-align-center flex-justify-between">
+                        <span class="fg-blue-safra">
+                            <span class="material-icons icon">subject</span>
+                            <span>Saldo e extrato</span>
+                        </span>                        
+                        <span class="mif-chevron-right icon-sidebar fg-gold-safra pr-4"></span>
+                    </a>                    
+                </li>
+                <li class="group-title fg-gold-safra">Investimentos</li>
+                <li>
+                    <a class="d-flex flex-align-center flex-justify-between" style="padding-left:36px;">
+                        <span class="fg-blue-safra">                            
+                            <span>Consultar</span>
+                        </span>                        
+                        <span class="mif-chevron-right icon-sidebar fg-gold-safra pr-4"></span>
+                    </a>
+                </li>
+                <li class="group-title fg-gold-safra">Serviços</li>
+                <li>
+                    <a class="d-flex flex-align-center flex-justify-between" style="padding-left:36px;">
+                        <span class="fg-blue-safra">                            
+                            <span>Pagar conta</span>
+                        </span>                        
+                        <span class="mif-chevron-right icon-sidebar fg-gold-safra pr-4"></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="d-flex flex-align-center flex-justify-between" style="padding-left:36px;">
+                        <span class="fg-blue-safra">                            
+                            <span>Transferências</span>
+                        </span>                        
+                        <span class="mif-chevron-right icon-sidebar fg-gold-safra pr-4"></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="d-flex flex-align-center flex-justify-between" style="padding-left:36px;">
+                        <span class="fg-blue-safra">                            
+                            <span>Boletos eletrônicos</span>
+                        </span>                        
+                        <span class="mif-chevron-right icon-sidebar fg-gold-safra pr-4"></span>
+                    </a>
+                </li>
+                <li class="group-title fg-gold-safra">Financiamentos</li>
+                <li>
+                    <a class="d-flex flex-align-center flex-justify-between" style="padding-left:36px;">
+                        <span class="fg-blue-safra">                            
+                            <span>Imobiliário</span>
+                        </span>                        
+                        <span class="mif-chevron-right icon-sidebar fg-gold-safra pr-4"></span>
+                    </a>
+                </li>
+                <li>
+                    <a class="d-flex flex-align-center flex-justify-between" style="padding-left:36px;">
+                        <span class="fg-blue-safra">                            
+                            <span>Veicular</span>
+                        </span>                        
+                        <span class="mif-chevron-right icon-sidebar fg-gold-safra pr-4"></span>
+                    </a>
+                </li>
+            </ul>
+        </aside>
+        <div class="shifted-content h-100 p-ab">
+            <div class="app-bar pos-fixed z-1 bg-white z-depth-4 d-flex flex-justify-between" data-role="appbar">
+                <button class="app-bar-item c-pointer" id="sidebar-toggle-3">
+                    <span class="mif-menu mif-2x" style="color:#d4ad68"></span>
+                </button>
+                <div class="d-flex flex-justify-end">       
+        
+                    <div href="#" class="brand bg-light-hover fg-white no-visible">
+                        <i class="material-icons">settings</i>
+                    </div>
+                    <div class="dropdown-button place-right">            
+                        <a href="#" class="brand bg-light-hover before-bd-black dropdown-toggle">
+                            <img name="user-picture" src="http://127.0.0.1/safra-open/assets/mark2.jpg" width="44px" height="44px" class="avatar" style="border-radius: 50%;">
+                        </a>
+                        <span class="d-menu place-right" data-role="dropdown">
+                            <div class="social-box bg-white" style="width:250px">
+                                <div class="header bg-light mt-0 mb-0">
+                                    
+                                    <div class="title text-bold fg-darkGray">Mark Z. da Silva</div>
+                                    <div class="subtitle mb-5 fg-darkGray">123.456.789-01233</div>
+                                    
+                                </div>
+                                <ul class="skills pt-0">
+                                    
+                                    <li class="d-flex flex-align-center flex-justify-center" style="height: 48px" onclick="logOut()">
+                                        <div class="">Sair</div>
+                                    </li>
+                                </ul>                    
+                                <small id="user-last-access" class="card-footer fg-darkGray">False 2020-09-11 21:58:58</small>  
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="h-100 p-4 bg-white">
+                <div class="d-flex flex-justify-between p-4 border bd-lightGray bg-light fg-blue-safra" style="width: 100%;border-radius: 4px;">                              
+                    <span>Parabéns, você acabou de ganhar <b>R$10,00</b> investidos no <span class="fg-gold-safra text-bold">Fundo Safra Pascal+</span>! Ganhe mais R$10,00 pra cada amigo convidado.</span>
+                    <span class="button mini square fg-darkGray flex-self-start" style="background-color: inherit;"><span class="mif-cross-light"></span></span>      
+                </div>
+                <div class="grid">
+                    <div class="row">
+                        <div class="cell-sm-12 cell-lg-4">
+                            <p class="remark m-0 d-flex flex-justify-between flex-align-center" style="border-color:#D4AD68;border-radius:4px;">                                
+                                <img src="https://www.safra.com.br/lumis-theme/br/com/bancosafra/safranet/theme/safranet/assets/img/logo-safra.svg" height="22.5">
+                                <span class="d-flex flex-align-center">
+                                    <span class="d-flex flex-column text-small fg-safra-blue pr-4">
+                                        <span>Conta: <b>R$1.000.000,00</b></span>
+                                        <span>Investido: <b>R$1.000.000,00</b></span>                                
+                                    </span>
+                                    <span class="mif-eye"></span>
+                                </span>
+                            </p>
+                        </div>
+                        <div class="cell-sm-12 cell-lg-4">
+                            <p class="remark m-0 d-flex flex-justify-between flex-align-center" style="border-color:#ee7400;border-radius:4px;">                                
+                                <img src="https://www.itau.com.br/content/dam/itau/varejo/logo-itau-varejo-desktop.png" height="22.5">
+                                <span class="d-flex flex-align-center">
+                                    <span class="d-flex flex-column text-small fg-safra-blue pr-4">
+                                        <span>Conta: <b>R$1.000.000,00</b></span>
+                                        <span>Investido: <b>R$1.000.000,00</b></span>                                
+                                    </span>
+                                    <span class="mif-eye"></span>
+                                </span>
+                            </p>                            
+                        </div>
+                        <div class="cell-sm-12 cell-lg-4">
+                            <p class="remark m-0 d-flex flex-justify-between flex-align-center" style="border-color:#ec0000;border-radius:4px;">                                
+                                <img src="https://abrasuaconta.santander.com.br/assets/img/logo-santander.svg" height="22.5">
+                                <span class="d-flex flex-align-center">
+                                    <span class="d-flex flex-column text-small fg-safra-blue pr-4">
+                                        <span>Conta: <b>R$1.000.000,00</b></span>
+                                        <span>Investido: <b>R$1.000.000,00</b></span>                                
+                                    </span>
+                                    <span class="mif-eye"></span>
+                                </span>
+                            </p>  
+                        </div>
+                        
+                        
+                        
+                        
+                        
+                    </div>                    
+                </div>
+                <h2 class="text-light">Extrato unificado</h2>
+                <div class="grid">
+                    <div class="row">
+                        <div class="cell-sm-12 cell-lg-1">
+                            <div id="export-panel"></div>
+                        </div>
+                        <div class="cell-sm-12 cell-lg-3 offset-lg-8">                            
+                            <input id="field-search" type="text" data-role="materialinput" data-cls-line="bg-gold-safra" data-cls-icon="fg-gold-safra" data-icon="<span class='mif-search'>" placeholder="Ex.: TED, DOC...">
+                        </div>                        
+                    </div>                    
+                </div>  
+                <table id="extract-table" class="table striped">
+                    <thead>
+                    <tr>
+                        <th class="text-center" style="width:120px">Data</th>
+                        <th class="text-center">Origem</th>
+                        <th class="text-left" >Lançamentos</th>                        
+                        <th class="text-center">Valor (R$)</th>                        
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr> 
+                            <td class="text-center">
+                                <div>12/set </div>                            
+                            </td>
+                            <td class="text-center">
+                                <img src="https://www.itau.com.br/content/dam/itau/varejo/logo-itau-varejo-desktop.png" height="22.5">
+                            </td>
+                            <td>TED 10945 343</td>                        
+                            <td class="text-center text-bold fg-red">- 250,00</td>
+                        </tr>
+                        <tr> 
+                            <td class="text-center"><div>12/set</div></td> 
+                            <td class="text-center"></td>                       
+                            <td class="text-bold fg-blue-safra">Saldo do dia</td>
+                            <td class="text-center text-bold fg-lightOlive">500,00</td>
+                        </tr>
+                    </tbody>
+                </table>
+               
+            </div>
+            <div class="p-4">
+                <div class="grid">
+                    <div class="row">
+                        <div class="cell-sm-12 cell-lg-4">
+                            <div class="card border-none" style="box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05);border-radius: 4px;">                                
+                                <div class="card-content p-4 d-flex flex-column">
+                                    <div class="fg-gold-safra h5">Safra Rewards</div>
+                                    <div class="fg-blue-safra text-small mt-2">Resgate experiências únicas e produtos diferenciados com os pontos do seu cartão de crédito e desfrute do padrão Safra de recompensas.</div>
+                                    <div class="d-flex flex-justify-end w-100 mt-2">
+                                        <a href="#" class="fg-blue-safra text-small ">Saiba mais</a>
+                                    </div>                                    
+                                </div>                                
+                            </div>
+                        </div>
+                        <div class="cell-sm-12 cell-lg-4">
+                            <div class="card border-none" style="box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05);border-radius: 4px;">                                
+                                <div class="card-content p-4 d-flex flex-column">
+                                    <div class="fg-gold-safra h5">Crédito sob medida</div>
+                                    <div class="fg-blue-safra text-small mt-2">O Safra possui opções de crédito sob medida e que não comprometem a rentabilidade de seus investimentos.</div>
+                                    <div class="d-flex flex-justify-end w-100 mt-2">
+                                        <a href="#" class="fg-blue-safra text-small ">Saiba mais</a>
+                                    </div>                                    
+                                </div>                                 
+                            </div>                        
+                        </div>
+                        <div class="cell-sm-12 cell-lg-4">
+                            <div class="card border-none" style="box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05);border-radius: 4px;">                                
+                                <div class="card-content p-4 d-flex flex-column">
+                                    <div class="fg-gold-safra h5">Seguros</div>
+                                    <div class="fg-blue-safra text-small mt-2">O Safra possui opções de seguro residencial, veicular e de vida, para você e sua família.</div>
+                                    <div class="d-flex flex-justify-end w-100 mt-2">
+                                        <a href="#" class="fg-blue-safra text-small ">Saiba mais</a>
+                                    </div>                                    
+                                </div>                                 
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+            <div class="d-flex flex-justify-end flex-align-center p-4">
+                <div class="pr-4">
+                    <img src="https://www.safra.com.br/lumis-theme/br/com/bancosafra/safranet/theme/safranet/assets/img/logo-safra.svg" height="22.5">                    
+                </div>                
+            </div>
+        </div>
+
+        <!-- Jquery -->    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+        <!-- Metro 4 Theme-->
+        <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
+
+        <!-- Datatable -->
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.21/b-1.6.3/b-colvis-1.6.3/b-html5-1.6.3/b-print-1.6.3/r-2.2.5/datatables.min.js"></script>
+
+
+        <!--<div class="overlay" style="background: rgba(0, 0, 0, 0.5);"></div>-->
+    </body>
+    <script>
+        $(document).ready(function() {
+            inicializeExtract()
+        });
+
+        function inicializeExtract(){
+            let table = $("#extract-table").DataTable({
+                /*ajax: {
+                    url: '{{api_url}}/portfolios/{{portfolio}}/phases/{{phase}}/projects',
+                    "dataSrc": function (data) {                                                    
+                        return data.portfolios[0].projects;
+                    },
+                    datatype: 'JSON',
+                    crossDomain: true,
+                    xhrFields: {
+                        withCredentials: true
+                    }
+                },*/
+                "language" : {
+                    "sEmptyTable":   "Não foi encontrada nenhuma transação",
+                    "sLoadingRecords": "A carregar...",
+                    "sProcessing":   "A processar...",
+                    "sLengthMenu":   "Mostrar _MENU_ registos",
+                    "sZeroRecords":  "Não foi encontrada nenhuma transação",
+                    "sInfo":         "Mostrando de _START_ até _END_ de _TOTAL_ registos",
+                    "sInfoEmpty":    "Mostrando de 0 até 0 de 0 registos",
+                    "sInfoFiltered": "(filtrado de _MAX_ registos no total)",
+                    "sInfoPostFix":  "",
+                    "sSearch":       "Procurar:",
+                    "sUrl":          "",
+                    "oPaginate": {
+                        "sFirst":    "Primeiro",
+                        "sPrevious": "Anterior",
+                        "sNext":     "Seguinte",
+                        "sLast":     "Último"
+                    },
+                    "oAria": {
+                        "sSortAscending":  ": Ordenar colunas de forma ascendente",
+                        "sSortDescending": ": Ordenar colunas de forma descendente"
+                    }                    
+                },
+                "processing": true,
+                "autoWidth": true,
+                "ordering": true,            
+                pageLength: 10,                
+                dom: '<"float-left"B>t',
+                buttons: [{
+                    extend: 'excel',
+                    className: 'button small bg-transparent d-flex flex-align-center',
+                    text: 'Salvar'
+                },{
+                    extend: 'print',
+                    className: 'button small bg-transparent d-flex flex-align-center'
+                }],
+                order: [],
+                /*"columns": [{                
+                    "data": "date",
+                    "orderable": false                
+                }, {
+                    "data": "origin",
+                    "orderable": false,
+                    "render": function (data, type, row, meta) {  
+                        return data                                                    
+                    }
+                }, {
+                    "data": transaction,
+                    "orderable": false,                    
+                    "render": function (data, type, row, meta) {  
+                        return data                                                   
+                    }
+                }, {
+                    "data": "value",
+                    "orderable": false,
+                    "render": function (data, type, row, meta) {  
+                        return data                                                   
+                    }
+                }
+            ],*/
+                initComplete: function(data) {                
+                    inicializeButtons()
+                    //Modifica a aparência dos botões da tabela
+                    //$('.buttons-csv').html('<span class="icon"><img src="{{ url_for("static", filename="icons/export_csv.svg")}}"></span><span class="caption">CSV</span>')
+                    //$('.buttons-pdf').html('<span class="icon"><img src="{{ url_for("static", filename="icons/export_pdf.svg")}}"></span><span class="caption">PDF</span>')
+                    
+                    //showPreLoader(false)                
+                }
+            })
+
+            
+
+            $('#field-search').on('keyup', function() {
+                table.search(this.value).draw();
+            });
+                                     
+        }
+
+        function inicializeButtons(){
+            $('.buttons-excel').html('<div class="fg-gold-safra material-icons">save</div><span class="fg-gold-safra pl-1">Salvar</span>')
+            $('.buttons-print').html('<div class="fg-gold-safra material-icons">print</div><span class="fg-gold-safra pl-1">Imprimir</span>')
+
+            //Posiciona os botões no menu de controles            
+            
+            
+
+            $('.dt-buttons').addClass('d-flex')
+        }
+
+        function hiddenIconMenu(){
+            $(".app-bar-item").addClass('no-visible');
+        }
+        function showIconMenu(){
+            $(".app-bar-item").removeClass('no-visible');
+        }
+    </script>
+
+
+</html>

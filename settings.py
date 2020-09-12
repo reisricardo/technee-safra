@@ -29,3 +29,15 @@ DATABASE_PORT = '3306'
 SITE_URL = 'http://127.0.0.1/safra-open'
 LOGIN_URL = '/login.html'
 LOGIN_REDIRECT_URL  = '/home.html' 
+
+API_URL = 'http://127.0.0.1:8000/open-banking/v1/'
+
+############# Configurações de APIs Bancárias #############
+API_BANKS = {
+    'SAFRA' : {
+        'URL' : 'https://af3tqle6wgdocsdirzlfrq7w5m.apigateway.sa-saopaulo-1.oci.customer-oci.com/fiap-sandbox',
+        'CLIENT_ID' : 'f9d3cd9600874ac2803d03ca709b78eb',
+        'SECRET_ID' : '1a2075e3-b15e-4324-902c-0f12f8f08082',
+        'API_KEY' : base64.b64encode(bytes('f9d3cd9600874ac2803d03ca709b78eb' + ':' + '1a2075e3-b15e-4324-902c-0f12f8f08082', 'utf-8'))
+    }
+}

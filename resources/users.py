@@ -13,8 +13,6 @@ from models.db import database, driver as db_driver
 
 import datetime
 
-from Crypto.Hash import SHA256
-
 users_collection = Namespace('users', description='Users related operations.')
 
 @users_collection.route('/<int:identification>/authenticate')
