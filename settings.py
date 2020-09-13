@@ -38,6 +38,27 @@ API_BANKS = {
         'URL' : 'https://af3tqle6wgdocsdirzlfrq7w5m.apigateway.sa-saopaulo-1.oci.customer-oci.com/fiap-sandbox',
         'CLIENT_ID' : 'f9d3cd9600874ac2803d03ca709b78eb',
         'SECRET_ID' : '1a2075e3-b15e-4324-902c-0f12f8f08082',
-        'API_KEY' : base64.b64encode(bytes('f9d3cd9600874ac2803d03ca709b78eb' + ':' + '1a2075e3-b15e-4324-902c-0f12f8f08082', 'utf-8'))
+        'API_KEY' : base64.b64encode(bytes('f9d3cd9600874ac2803d03ca709b78eb' + ':' + '1a2075e3-b15e-4324-902c-0f12f8f08082', 'utf-8')),
+        'URL_TOKEN' : 'https://idcs-902a944ff6854c5fbe94750e48d66be5.identity.oraclecloud.com/oauth2/v1/token',
+        
+        'URL_EXTRACT' : '/open-banking/v1/accounts/{}/transactions'
+    },
+    'PLAYER_I' : {
+        'URL' : 'https://run.mocky.io/v3',
+        'CLIENT_ID' : 'f9d3cd9600874ac2803d03ca709b78eb',
+        'SECRET_ID' : '1a2075e3-b15e-4324-902c-0f12f8f08082',
+        'API_KEY' : base64.b64encode(bytes('f9d3cd9600874ac2803d03ca709b78eb' + ':' + '1a2075e3-b15e-4324-902c-0f12f8f08082', 'utf-8')),
+        'URL_TOKEN' : 'https://run.mocky.io/v3/f75d63b2-9adc-4dbb-b88a-ff2c699e0c91',
+        'URL_EXTRACT' : '/11c86aad-5b3b-4bdb-bb0a-e945b90c4c29'
+    },
+    'PLAYER_S' : {
+        'URL' : 'https://run.mocky.io/v3',
+        'CLIENT_ID' : 'f9d3cd9600874ac2803d03ca709b78eb',
+        'SECRET_ID' : '1a2075e3-b15e-4324-902c-0f12f8f08082',
+        'API_KEY' : base64.b64encode(bytes('f9d3cd9600874ac2803d03ca709b78eb' + ':' + '1a2075e3-b15e-4324-902c-0f12f8f08082', 'utf-8')),
+        'URL_TOKEN' : 'https://run.mocky.io/v3/f75d63b2-9adc-4dbb-b88a-ff2c699e0c91',
+        'URL_EXTRACT' : '/dca0e8e5-a5a0-4dbe-aa80-9b561759c3a6'
     }
 }
+
+REGISTERED_INSTITUTIONS = ['SAFRA', 'PLAYER_I', 'PLAYER_S']

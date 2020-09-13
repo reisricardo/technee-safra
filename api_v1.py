@@ -3,6 +3,7 @@ from flask_restx import Api
 
 from resources.pages import pages_collection
 from resources.users import users_collection
+from resources.banks import banks_collection
 
 blueprint = Blueprint('api_v1', __name__, url_prefix='/open-banking/v1')
 api = Api(
@@ -17,3 +18,4 @@ api = Api(
 
 api.add_namespace(pages_collection)
 api.add_namespace(users_collection)
+api.add_namespace(banks_collection)
