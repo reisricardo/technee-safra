@@ -3,7 +3,7 @@ import requests
 
 def get_token(institution):
     '''
-    Responsável por conectar-se nas APIs do Open Banking e realizar a autenticação, retornando o token JWT de autorização
+    Conecta-se nas APIs do Open Banking e realiza a autenticacao, retornando o token JWT de autorizacao
     '''
     
     url_token = API_BANKS[institution]['URL_TOKEN']
@@ -26,7 +26,7 @@ def get_token(institution):
 
 def get_account_data(institution, account, token):
     '''
-    Responsável por extrair os dados de uma determinada conta das apis do open banking
+    Extrai os dados de uma determinada conta das APIs do Open Banking
     '''
     url_institution_api = API_BANKS[institution]['URL']
     url_transactions = API_BANKS[institution]['URL_EXTRACT'].format(account)

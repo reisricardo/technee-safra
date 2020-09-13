@@ -2,7 +2,7 @@ from flask import request, current_app
 
 class request_handler:
     '''
-    Biblioteca com métodos para manipulação das requisições
+    Biblioteca com metodos para manipulacao das requisicoes
     '''
 
     def __init__(self, request_obj):
@@ -18,7 +18,7 @@ class request_handler:
     
     def get_args(self):
         '''
-        Retorna os argumentos enviados com a requisição
+        Retorna os argumentos enviados com a requisicao
         Método POST => Retorna argumentos do body
         Método GET => Retorna argumentos da query string
         Método PUT => Retorna argumentos do body
@@ -33,6 +33,6 @@ class request_handler:
 
     def self_url(self):
         '''
-        Retornaa url de requisição
+        Retornaa url de requisicao
         '''
         return request.url
