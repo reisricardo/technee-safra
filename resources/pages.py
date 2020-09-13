@@ -13,7 +13,7 @@ pages_collection = Namespace('pages', description='Render pages operations.')
 class render_home(Resource):
     def get(self):
         '''
-        Loads the homepage
+        Carrega a pagina home
         '''
 
         resp = make_response(render_template('home.html', 
@@ -27,7 +27,7 @@ class render_home(Resource):
 class render_login(Resource):
     def get(self):
         '''
-        Loads the homepage
+        Carrega a pagina login
         '''
 
         resp = make_response(render_template('login.html', 
@@ -41,7 +41,7 @@ class render_login(Resource):
 class render_login(Resource):
     def get(self):
         '''
-        Loads the homepage
+        Carrega a pagina contract
         '''
 
         resp = make_response(render_template('contract.html', 

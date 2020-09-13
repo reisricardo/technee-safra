@@ -1,4 +1,4 @@
-############# Conjunto de rotas da coleção de usuários #############
+############# Conjunto de rotas da coleção de usuarios ############
 
 from flask import request, jsonify
 from flask_restx import Resource, Namespace
@@ -19,7 +19,7 @@ users_collection = Namespace('users', description='Users related operations.')
 class user_authenticate(Resource):
     def post(self, identification):
         '''
-        Performs user authentication and returns access tokens (2h)
+        Executa a autenticacao de usuario e retorna tokens de acesso (2h)
         '''
         url = request_handler(request)
         args = url.get_args()
@@ -29,14 +29,14 @@ class user_authenticate(Resource):
             db_connection = database()
             conn, cursor = db_connection.open_connection()
             
-            #Checa se existe informação no body
+            #Checa se existe informacao no body
             if 'payload' in args:
                 current_user = user() 
                 current_user.uid = args['payload']          
                 current_user.identification = identification
                 registered_user, current_user = current_user.check_user_register(conn, cursor)
 
-                #Caso o usuário seja válido, retorna as informações
+                #Caso o usuario seja valido, retorna as informacoes
                 if registered_user:
                     access_token = create_access_token(identity=identification)
                     refresh_token = create_refresh_token(identity=identification)
@@ -117,7 +117,7 @@ class user_logout(Resource):
     @jwt_required
     def delete(self, identification):
         '''
-        Performs the user's logout, invalidating the access tokens
+        Executa o logout do usuario, invalidando os tokens de acesso
         '''
 
         url = request_handler(request)

@@ -16,7 +16,7 @@ app = Flask(__name__)
 if CORS_ENABLE:
     CORS(app, supports_credentials=CORS_SUPPORT_CREDENTIALS)
 
-#Configura o módulo JWT (Autenticação)
+#Configura o modulo JWT (Autenticação)
 app.config['JWT_SECRET_KEY'] = JWT_SECRET_KEY
 app.config['JWT_ACCESS_TOKEN_EXPIRES'] = JWT_ACCESS_TOKEN_EXPIRES
 app.config['JWT_TOKEN_LOCATION'] = JWT_TOKEN_LOCATION

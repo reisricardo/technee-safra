@@ -22,7 +22,7 @@ banks_collection = Namespace('banks', description='Banks related operations.', o
 class syncronize_accounts(Resource):
     def get(self, bank, identification):
         '''
-        Responsável por procurar na coleção de APIs do open banking, as contas de um determinado usuário em uma determinada instituição
+        Procura na colecao de APIs do open banking, as contas de um determinado usuario em uma determinada instituicao
         '''
         url = request_handler(request)
         args = url.get_args()
@@ -37,7 +37,7 @@ class syncronize_accounts(Resource):
 
                 '''
                 Nesse ponto eu vou utilizar duas premissas, devido a ausencia dessa rota na API disponibilizada.
-                Premissa 1: A api disponibilizada pelos bancos contém uma rota que lista os usuários daquela instituição,
+                Premissa 1: A api disponibilizada pelos bancos contem uma rota que lista os usuários daquela instituicao,
                 e responde aproximadamente no seguinte formato:
                 
                 'Data' : [
@@ -45,7 +45,7 @@ class syncronize_accounts(Resource):
                     {'AccountId' : '00711234522', 'Identification' : '12345678901222'},
                     {'AccountId' : '00711234533', 'Identification' : '12345678901233'}
                 ]
-                Abaixo sera possivel ver o mock dessa resposta pra cada instituição cadastrada
+                Abaixo sera possivel ver o mock dessa resposta pra cada instituicao cadastrada
                 '''
                 if institution == 'SAFRA':
                     list_clients = {
@@ -120,9 +120,8 @@ class syncronize_accounts(Resource):
                         'Self' : url.self_url()                 
                     }
                 })
-                resp.status_code = 200            
+                resp.status_code = 200    
 
-        
         except db_driver.Error as e:
             
             resp = jsonify({
@@ -146,47 +145,97 @@ class syncronize_accounts(Resource):
             resp.status_code = 500
         finally:
             return resp    
+                
 
-        
-
-@banks_collection.route('/<string:bank>/clients')
-class list_clients(Resource):
-    def get(self, bank):
+@banks_collection.route('/all/clients/<string:identification>/transactions')
+class transactions(Resource):
+    def get(self, identification):
         '''
-        Rota responsável por 
+        Retorna as transacoes unificadas de um determinado usuarios
         '''
-        #Get de Authorization
-        print(API_BANKS)
-        for data_bank in API_BANKS:
-            url_bank = API_BANKS[data_bank]['URL']
-            url_token = API_BANKS[data_bank]['URL_TOKEN']
-            api_key_authorization = API_BANKS[data_bank]['API_KEY']
+        url = request_handler(request)
+        args = url.get_args()
 
-            print(api_key_authorization, url_bank, url_token)
+        try:
+           
+            db_connection = database()
+            conn, cursor = db_connection.open_connection()
 
+            sql =   '''
+                        SELECT 
+                            information,
+                            value_date, 
+                            aux_banks_code, 
+                            DAY(value_date) as day,
+                            MONTH(value_date) as month, 
+                            YEAR(value_date) as year, 
+                            SUM(IF(operation = 'DEBIT', -amount, amount)) as sum_amount 
+                        FROM open.aux_transactions 
+                        WHERE users_identification = %(identification)s AND operation IN ('Debit', 'Credit') 
+                        GROUP BY 
+                            YEAR(value_date), 
+                            MONTH(value_date), 
+                            DAY(value_date), 
+                            aux_banks_code
+                        ORDER BY 
+                            MONTH(value_date) DESC, DAY(value_date) DESC 
+                    '''
+            val = {'identification' : identification}
+            cursor.execute(sql ,val)
+            data = cursor.fetchall()
             
+            transactions = []
+            total = 0
+            for row in data:
+                total += float(row['sum_amount'])
+                content = {
+                    "date" : str(row['value_date']),
+                    "origin" : row['aux_banks_code'],
+                    "information" : row['information'],
+                    "sum_amount" : float(row['sum_amount'])                     
+                }
+                transactions.append(content)
             
-            '''
-            Nesse ponto eu vou utilizar duas premissas, devido a ausencia dessa rota na API disponibilizada.
-            Premissa 1: A api disponibilizada pelos bancos contém uma rota que lista os usuários daquela instituição,
-            e responde aproximadamente no seguinte formato:
-            
-            'Data' : {
-                {'AccountId' : '00711234511', 'Identification' : '12345678901211'},
-                {'AccountId' : '00711234522', 'Identification' : '12345678901222'},
-                {'AccountId' : '00711234533', 'Identification' : '12345678901233'}
+            content = {
+                "date" : transactions[0]['date'],
+                "origin" : '-',
+                "information" : 'Saldo',
+                "sum_amount" : total                     
             }
+            transactions = [content] + transactions
             
-            Premissa 2: A nossa plataforma possui um "crawler" rodando 
+            resp = jsonify({
+                'Data' : transactions,
+                'StatusId' : 'banks_transaction_successful',
+                'StatusMessage' : 'Transaction successful.',                    
+                'Links' : {
+                    'Self' : url.self_url()                 
+                }
+            })
+            resp.status_code = 200  
+        
+        except db_driver.Error as e:
             
+            resp = jsonify({
+                'StatusId' : 'banks_database_error',
+                'StatusMessage' : 'Database error.',
+                'DescriptionError' : str(e),
+                'Links' : {
+                    'Self' : url.self_url()                 
+                }
+            })
+            resp.status_code = 500
+        except Exception as e:
+            resp = jsonify({
+                'StatusId' : 'banks_internal_error',
+                'StatusMessage' : 'Transaction error occurred.',
+                'DescriptionError' : str(e),
+                'Links' : {
+                    'Self' : url.self_url()                 
+                }
+            })
+            resp.status_code = 500
+        finally:
+            return resp    
 
-            Nesse ponto, deveria existir um endpoint nas APIs de cada banco com a lista de clientes
-            Eu vou considerar que esse dado chegou no seguinte formato arbitrário
-            '''
-            
-
-            #Com essa informação, eu 
-
-            print(auth_token)
-
-            
+  

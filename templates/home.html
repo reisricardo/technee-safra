@@ -13,10 +13,10 @@
         <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
     
         <!-- Favicon -->
-        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+        <link rel="icon" type="image/x-icon" href="https://www.safra.com.br/lumis-theme/br/com/bancosafra/safranet/theme/safranet/assets/img/fav/favicon.ico">
 
         <!-- Title -->
-        <title>Bank ALL :: Início</title>
+        <title>Safra Open :: Início</title>
 
     </head>
     <style>
@@ -61,6 +61,9 @@
             aside.open {
                 width: -webkit-fill-available!important;
             }
+        }
+        .z-0 {
+            z-index: 0!important;
         }
         /* Scrollbar Customize */
 
@@ -302,20 +305,20 @@
                             <div id="export-panel"></div>
                         </div>
                         <div class="cell-sm-12 cell-lg-3 offset-lg-8">                            
-                            <input id="field-search" type="text" data-role="materialinput" data-cls-line="bg-gold-safra" data-cls-icon="fg-gold-safra" data-icon="<span class='mif-search'>" placeholder="Ex.: TED, DOC...">
+                            <input id="field-search" type="text" data-role="materialinput" data-cls-component="z-0" data-cls-line="bg-gold-safra" data-cls-icon="fg-gold-safra" data-icon="<span class='mif-search'>" placeholder="Ex.: TED, DOC...">
                         </div>                        
                     </div>                    
                 </div>  
                 <table id="extract-table" class="table striped">
                     <thead>
-                    <tr>
-                        <th class="text-center" style="width:120px">Data</th>
-                        <th class="text-center">Origem</th>
-                        <th class="text-left" >Lançamentos</th>                        
-                        <th class="text-center">Valor (R$)</th>                        
-                    </tr>
+                        <tr>
+                            <th class="text-center" style="width:120px">Data</th>
+                            <th class="text-center">Origem</th>
+                            <th class="text-center" >Lançamentos</th>                        
+                            <th class="text-center">Valor (R$)</th>                        
+                        </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="text-center">
                         <tr> 
                             <td class="text-center">
                                 <div>12/set </div>                            
@@ -452,28 +455,31 @@
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jszip-2.5.0/dt-1.10.21/b-1.6.3/b-colvis-1.6.3/b-html5-1.6.3/b-print-1.6.3/r-2.2.5/datatables.min.js"></script>
-
-
+        
+        <!-- Moment -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment-with-locales.min.js" integrity="sha512-qSnlnyh7EcD3vTqRoSP4LYsy2yVuqqmnkM9tW4dWo6xvAoxuVXyM36qZK54fyCmHoY1iKi9FJAUZrlPqmGNXFw==" crossorigin="anonymous"></script>
+        
         <!--<div class="overlay" style="background: rgba(0, 0, 0, 0.5);"></div>-->
     </body>
     <script>
         $(document).ready(function() {
+            moment.locale('pt-br');
             inicializeExtract()
         });
 
         function inicializeExtract(){
             let table = $("#extract-table").DataTable({
-                /*ajax: {
-                    url: '{{api_url}}/portfolios/{{portfolio}}/phases/{{phase}}/projects',
+                ajax: {
+                    url: '{{api_url}}banks/all/clients/12345678901233/transactions',
                     "dataSrc": function (data) {                                                    
-                        return data.portfolios[0].projects;
+                        return data.Data;
                     },
                     datatype: 'JSON',
                     crossDomain: true,
                     xhrFields: {
                         withCredentials: true
                     }
-                },*/
+                },
                 "language" : {
                     "sEmptyTable":   "Não foi encontrada nenhuma transação",
                     "sLoadingRecords": "A carregar...",
@@ -498,8 +504,9 @@
                     }                    
                 },
                 "processing": true,
-                "autoWidth": true,
-                "ordering": true,            
+                "autoWidth": false,
+                "ordering": true,
+                "responsive" : true,           
                 pageLength: 10,                
                 dom: '<"float-left"B>t',
                 buttons: [{
@@ -511,9 +518,13 @@
                     className: 'button small bg-transparent d-flex flex-align-center'
                 }],
                 order: [],
-                /*"columns": [{                
+                "columns": [{                
                     "data": "date",
-                    "orderable": false                
+                    "orderable": false,
+                    "render": function (data, type, row, meta) { 
+                        
+                        return moment(row.date).format('DD/MMM');                                                   
+                    }              
                 }, {
                     "data": "origin",
                     "orderable": false,
@@ -521,19 +532,32 @@
                         return data                                                    
                     }
                 }, {
-                    "data": transaction,
+                    "data": "information",
                     "orderable": false,                    
-                    "render": function (data, type, row, meta) {  
-                        return data                                                   
+                    "render": function (data, type, row, meta) { 
+                        if(meta.row == 0){
+                            value = '<span class="text-bold">' + data + '</span>'
+                        }else{
+                            value = '<span>' + data + '</span>'
+                        }
+                        return value                                                   
                     }
                 }, {
-                    "data": "value",
+                    "data": "sum_amount",
                     "orderable": false,
-                    "render": function (data, type, row, meta) {  
-                        return data                                                   
+                    "render": function (data, type, row, meta) {
+                        console.log(row.sum_amount)
+                        if(row.sum_amount <= 0){
+                            value = (row.sum_amount).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                            text = '<span class="text-bold fg-red">'+ value +'</span>'
+                        }else{
+                            value = (row.sum_amount).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+                            text = '<span class="text-bold fg-lightOlive">+'+ value +'</span>'
+                        }
+                        return text                                                   
                     }
                 }
-            ],*/
+            ],
                 initComplete: function(data) {                
                     inicializeButtons()
                     //Modifica a aparência dos botões da tabela
@@ -562,7 +586,9 @@
 
             $('.dt-buttons').addClass('d-flex')
         }
-
+        function logOut(){
+            window.location.href = 'login'
+        }
         function hiddenIconMenu(){
             $(".app-bar-item").addClass('no-visible');
         }

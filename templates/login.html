@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="https://cdn.metroui.org.ua/v4/css/metro-all.min.css">
 
         <!-- Favicon -->
-        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+        <link rel="icon" type="image/x-icon" href="https://www.safra.com.br/lumis-theme/br/com/bancosafra/safranet/theme/safranet/assets/img/fav/favicon.ico">
 
         <!-- Title -->
         <title>Safra Open :: Entrar</title>
@@ -132,7 +132,7 @@
                 let identification = $("#identification-field").val()
                 let password = $("#password-field").val()
 
-                if(identification == 12345678901233 && password == 123456){
+                if(identification == 12345678901233 && password == 'abc123456'){
                     window.location.href = 'contract'
                 }else{
                     if(identification == '' || password == ''){
@@ -144,7 +144,7 @@
             }
             function showInfosAccounts(){                
                 let toast = Metro.toast.create;
-                toast('A autenticação é mockada para o seguinte usuário: <br>Mark Z. da Silva - Identificação: 12345678901233 / Senha: 123456<br>', null, 5000, "bg-white bd-gold-safra border fg-gold-safra");
+                toast('A autenticação é mockada para o seguinte usuário: <br>Mark Z. da Silva - Identificação: 12345678901233 / Senha: abc123456<br>', null, 5000, "bg-white bd-gold-safra border fg-gold-safra");
             }
         </script>
     </body>    
