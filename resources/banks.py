@@ -155,23 +155,30 @@ class transactions(Resource):
         '''
         url = request_handler(request)
         args = url.get_args()
-
+               
         try:
            
             db_connection = database()
             conn, cursor = db_connection.open_connection()
+            if 'mode' in args:
+                if args['mode'] == "cc":
+                    aux_where = "AND operation IN ('Debit', 'Credit')"
+                else:    
+                    aux_where = "AND operation IN ('Invest')"
 
             sql =   '''
                         SELECT 
                             information,
                             value_date, 
-                            aux_banks_code, 
+                            aux_banks_code,
+                            bank.image_path,
                             DAY(value_date) as day,
                             MONTH(value_date) as month, 
                             YEAR(value_date) as year, 
                             SUM(IF(operation = 'DEBIT', -amount, amount)) as sum_amount 
                         FROM open.aux_transactions 
-                        WHERE users_identification = %(identification)s AND operation IN ('Debit', 'Credit') 
+                        LEFT JOIN open.aux_banks bank ON (aux_banks_code = bank.code) 
+                        WHERE users_identification = %(identification)s {aux_where} 
                         GROUP BY 
                             YEAR(value_date), 
                             MONTH(value_date), 
@@ -179,7 +186,7 @@ class transactions(Resource):
                             aux_banks_code
                         ORDER BY 
                             MONTH(value_date) DESC, DAY(value_date) DESC 
-                    '''
+                    '''.format(aux_where = aux_where)
             val = {'identification' : identification}
             cursor.execute(sql ,val)
             data = cursor.fetchall()
@@ -191,14 +198,16 @@ class transactions(Resource):
                 content = {
                     "date" : str(row['value_date']),
                     "origin" : row['aux_banks_code'],
+                    "origin_image_path" : row['image_path'],
                     "information" : row['information'],
                     "sum_amount" : float(row['sum_amount'])                     
                 }
-                transactions.append(content)
+                transactions.append(content)                
             
             content = {
                 "date" : transactions[0]['date'],
                 "origin" : '-',
+                "origin_image_path" : '',
                 "information" : 'Saldo',
                 "sum_amount" : total                     
             }
@@ -226,6 +235,7 @@ class transactions(Resource):
             })
             resp.status_code = 500
         except Exception as e:
+            raise e
             resp = jsonify({
                 'StatusId' : 'banks_internal_error',
                 'StatusMessage' : 'Transaction error occurred.',
@@ -236,6 +246,78 @@ class transactions(Resource):
             })
             resp.status_code = 500
         finally:
-            return resp    
+            return resp 
+
+@banks_collection.route('/all/clients/<string:identification>/transactions/all/consolidate')
+class transactions_consolidate(Resource):
+    def get(self, identification):
+        '''
+        Retorna os saldos de um determinado usuario agrupados pelas instituicoes 
+        '''
+        url = request_handler(request)
+        args = url.get_args()
+               
+        try:
+           
+            db_connection = database()
+            conn, cursor = db_connection.open_connection()
+            
+            sql =   '''
+                        SELECT 
+                            aux_banks_code, 
+                            IF(operation = 'Invest', operation, '') as operation, 
+                            SUM(IF(operation = 'DEBIT', -amount, amount)) as amount 
+                        FROM open.aux_transactions
+                        LEFT JOIN open.aux_banks bank ON (aux_banks_code = bank.code)
+                        GROUP BY aux_banks_code, operation LIKE ('Invest') 
+                    '''
+            val = {}
+            cursor.execute(sql ,val)
+            data = cursor.fetchall()
+            
+            consolidate = []           
+            for row in data:                
+                content = {
+                    "aux_banks_code" : row['aux_banks_code'],
+                    "operation" : row['operation'],                    
+                    "amount" : float(row['amount'])                     
+                }
+                consolidate.append(content)                
+                        
+            
+            resp = jsonify({
+                'Data' : consolidate,
+                'StatusId' : 'banks_consolidate_successful',
+                'StatusMessage' : 'Consolidate successful.',                    
+                'Links' : {
+                    'Self' : url.self_url()                 
+                }
+            })
+            resp.status_code = 200  
+        
+        except db_driver.Error as e:
+            
+            resp = jsonify({
+                'StatusId' : 'banks_database_error',
+                'StatusMessage' : 'Database error.',
+                'DescriptionError' : str(e),
+                'Links' : {
+                    'Self' : url.self_url()                 
+                }
+            })
+            resp.status_code = 500
+        except Exception as e:
+            raise e
+            resp = jsonify({
+                'StatusId' : 'banks_internal_error',
+                'StatusMessage' : 'Consolidate error occurred.',
+                'DescriptionError' : str(e),
+                'Links' : {
+                    'Self' : url.self_url()                 
+                }
+            })
+            resp.status_code = 500
+        finally:
+            return resp       
 
   

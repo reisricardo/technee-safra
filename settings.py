@@ -49,7 +49,7 @@ API_BANKS = {
         'SECRET_ID' : '1a2075e3-b15e-4324-902c-0f12f8f08082',
         'API_KEY' : base64.b64encode(bytes('f9d3cd9600874ac2803d03ca709b78eb' + ':' + '1a2075e3-b15e-4324-902c-0f12f8f08082', 'utf-8')),
         'URL_TOKEN' : 'https://run.mocky.io/v3/f75d63b2-9adc-4dbb-b88a-ff2c699e0c91',
-        'URL_EXTRACT' : '/11c86aad-5b3b-4bdb-bb0a-e945b90c4c29'
+        'URL_EXTRACT' : '/66553d7d-2b1f-4df9-a0ba-2c9b39804580'
     },
     'PLAYER_S' : {
         'URL' : 'https://run.mocky.io/v3',

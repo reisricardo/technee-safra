@@ -50,3 +50,31 @@ class render_login(Resource):
         resp.headers['Content-Type'] = "text/html"
 
         return resp
+
+@pages_collection.route('/investment')
+class render_login(Resource):
+    def get(self):
+        '''
+        Carrega a pagina investiment
+        '''
+
+        resp = make_response(render_template('investment.html', 
+        api_url = API_URL
+        ))
+        resp.headers['Content-Type'] = "text/html"
+
+        return resp
+    
+@pages_collection.route('/play')
+class render_login(Resource):
+    def get(self):
+        '''
+        Carrega a pagina investiment
+        '''
+
+        resp = make_response(render_template('play.html', 
+        api_url = API_URL
+        ))
+        resp.headers['Content-Type'] = "text/html"
+
+        return resp

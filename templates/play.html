@@ -61,36 +61,27 @@
             aside.open {
                 width: -webkit-fill-available!important;
             }
+            .card {
+                width:320px!important;
+            }
         }
         .z-0 {
             z-index: 0!important;
         }
         /* Scrollbar Customize */
-
-
         /* width */
-
         ::-webkit-scrollbar {
             width: 10px;
         }
-
-
         /* Track */
-
         ::-webkit-scrollbar-track {
             background: #f1f1f1;
         }
-
-
         /* Handle */
-
         ::-webkit-scrollbar-thumb {
             background: #888;
         }
-
-
         /* Handle on hover */
-
         ::-webkit-scrollbar-thumb:hover {
             background: #555;
         }
@@ -184,7 +175,7 @@
                 </li>
                 <li class="group-title fg-gold-safra">Investimentos</li>
                 <li>
-                    <a href="investment" class="d-flex flex-align-center flex-justify-between" style="padding-left:36px;">
+                    <a href="investiment" class="d-flex flex-align-center flex-justify-between" style="padding-left:36px;">
                         <span class="fg-blue-safra">                            
                             <span>Minha carteira</span>
                         </span>                        
@@ -247,115 +238,102 @@
             </div>
 
             <div class="h-100 p-4 bg-white">                
-                <div class="grid">
-                    <div class="row">
-                        <div class="cell-sm-12 cell-lg-4">
-                            <p class="remark m-0 d-flex flex-justify-between flex-align-center" style="border-color:#D4AD68;border-radius:4px;">                                
-                                <img src="https://www.safra.com.br/lumis-theme/br/com/bancosafra/safranet/theme/safranet/assets/img/logo-safra.svg" height="22.5">
-                                <span class="d-flex flex-align-center">
-                                    <span class="d-flex flex-column text-small fg-safra-blue pr-4">
-                                        <span>Conta: <b name="account-balance" data-bank="BancoSafra">R$0,00</b><b name="ocult-balance" style="display:none">R$ -</b></span>
-                                        <span>Investido: <b name="invest-balance" data-bank="BancoSafra">R$0,00</b><b name="ocult-balance" style="display:none">R$ -</b></span>                                
-                                    </span>
-                                    <span name="icon-balance"  class="material-icons c-pointer" onClick="toggleBalance(this)">visibility</span>                                    
-                                </span>
-                            </p>
-                        </div>
-                        <div class="cell-sm-12 cell-lg-4">
-                            <p class="remark m-0 d-flex flex-justify-between flex-align-center" style="border-color:#ee7400;border-radius:4px;">                                
-                                <img src="https://raw.githubusercontent.com/reisricardo/static/master/player_i.svg" height="22.5">
-                                <span class="d-flex flex-align-center">
-                                    <span class="d-flex flex-column text-small fg-safra-blue pr-4">
-                                        <span>Conta: <b name="account-balance" data-bank="BancoPlayerI">R$0,00</b><b name="ocult-balance" style="display:none">R$ -</b></span>
-                                        <span>Investido: <b name="invest-balance" data-bank="BancoPlayerI">R$0,00</b><b name="ocult-balance" style="display:none">R$ -</b></span>                                
-                                    </span>
-                                    <span name="icon-balance"  class="material-icons c-pointer" onClick="toggleBalance(this)">visibility</span> 
-                                </span>
-                            </p>                            
-                        </div>
-                        <div class="cell-sm-12 cell-lg-4">
-                            <p class="remark m-0 d-flex flex-justify-between flex-align-center" style="border-color:#ec0000;border-radius:4px;">                                
-                                <img src="https://raw.githubusercontent.com/reisricardo/static/master/player_s.svg" height="22.5">
-                                <span class="d-flex flex-align-center">
-                                    <span class="d-flex flex-column text-small fg-safra-blue pr-4">
-                                        <span>Conta: <b name="account-balance" data-bank="BancoPlayerS">R$0,00</b><b name="ocult-balance" style="display:none">R$ -</b></span>
-                                        <span>Investido: <b name="invest-balance" data-bank="BancoPlayerS">R$0,00</b><b name="ocult-balance" style="display:none">R$ -</b></span>                                
-                                    </span>
-                                    <span name="icon-balance" class="material-icons c-pointer" onClick="toggleBalance(this)">visibility</span> 
-                                </span>
-                            </p>  
-                        </div>
-                    </div>                    
-                </div>
+                
                 <h2 class="text-light d-flex">
-                    <span>Extrato unificado</span> 
-                    <small id="synchronize-info" class="ml-8 d-flex flex-align-center fg-gold-safra">
-                        <span class="mif-spinner3 ani-pulse mr-2"></span>
-                        <span>sincronizando contas</span>
-                    </small>
-                </h2>
-                <div class="grid">
-                    <div class="row">
-                        <div class="cell-sm-12 cell-lg-1">
-                            <div id="export-panel"></div>
-                        </div>
-                        <div class="cell-sm-12 cell-lg-3 offset-lg-8">                            
-                            <input id="field-search" type="text" data-role="materialinput" data-cls-component="z-0" data-cls-line="bg-gold-safra" data-cls-icon="fg-gold-safra" data-icon="<span class='mif-search'>" placeholder="Ex.: TED, DOC...">
-                        </div>                        
-                    </div>                    
-                </div>
-                <table id="extract-table" class="table striped">
-                    <thead>
-                        <tr>
-                            <th class="text-center" style="width:120px">Data</th>
-                            <th class="text-center">Origem</th>
-                            <th class="text-center" >Lançamentos</th>                        
-                            <th class="text-center">Valor (R$)</th>                        
-                        </tr>
-                    </thead>
-                    <tbody class="text-center"></tbody>
-                </table>
-               
-            </div>
-            <div class="p-4">
-                <div class="grid">
-                    <div class="row">
-                        <div class="cell-sm-12 cell-lg-4">
-                            <div class="card border-none" style="box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05);border-radius: 4px;">                                
-                                <div class="card-content p-4 d-flex flex-column">
-                                    <div class="fg-gold-safra h5">Minha carteira</div>
-                                    <div class="fg-blue-safra text-small mt-2">Visualize e gerencie seus investimentos.</div>
-                                    <div class="d-flex flex-justify-end w-100 mt-2">
-                                        <a href="investment" class="fg-blue-safra text-small ">Saiba mais</a>
-                                    </div>                                    
-                                </div>                                
+                    <span>Safra Play</span>                     
+                </h2>    
+                <div class="fg-gray text-center h4">O seu programa de recompensas para investimentos!</div>
+                <div class="fg-blue-safra text-center">Realize aportes mensais, <b>conquiste</b> as metas e <b>ganhe</b> diversos prêmios, como: investbacks em cotas dos nossos fundos, taxas administrativas e de corretagem diferenciadas, cursos, assessorias personalizadas e participação no nosso clube de fidelidade.</div>           
+                <div class="fg-blue-safra text-center">Os prêmios são rotativos, então se <a href="#">cadastre</a> na nossa newsletter para não perder nenhuma novidade. <b class="fg-gold-safra">Preparado??</b></div>
+                <div class="d-flex flex-justify-around w-100 flex-column mt-8">                    
+                    <div class="card bd-gold-safra " style="box-shadow: 0 10px 20px 0 rgba(212, 173, 104, 0.35);border-radius: 4px;width:450px">                                                                
+                        <div class="card-content p-4 d-flex flex-justify-center flex-align-center flex-column">
+                            <div class="fg-gold-safra text-center h5">Criar conta na nossa plataforma</div>
+                            <div class="fg-blue-safra text-small text-center mt-2">Conteúdos exclusivos e apoio do melhor banco de investimentos do Brasil :)</div>
+                            <div class="d-flex flex-justify-end w-100 mt-2">
+                                <span class="material-icons fg-gold-safra">check_circle</span>
+                            </div>                                    
+                        </div>                                
+                    </div>
+                    <hr class="bd-gold-safra" width="3" size="100" style="height:60px;border:2px dashed">
+                    <div class="card bd-gray fg-gray" style="box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05);border-radius: 4px;width:450px">                                
+                        <div class="card-content p-4 d-flex flex-justify-center flex-align-center flex-column">
+                            <div class="text-center h5">Fazer portabilidade dos seus investimentos</div>
+                            <div class="text-small text-center mt-2">- Assessoria personalizada para você encontrar as melhores oportunidades.</div>
+                            <div class="d-flex flex-justify-end w-100 mt-2">
+                                <span class="material-icons fg-gray">check_circle</span>
+                            </div>                                    
+                        </div>                                
+                    </div>
+                    <hr class="bg-gray" width="3" size="100" style="height:60px">
+                    <div class="card bd-gray fg-gray" style="box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05);border-radius: 4px;width:450px">                                
+                        <div class="card-content p-4 d-flex flex-justify-center flex-align-center flex-column">
+                            <div class="text-center h5 d-flex flex-align-center">Convidar 10 amigos <span class="ml-2 material-icons">supervisor_account</span></div>
+                            <div class="text-small text-left mt-2">- <b>Investback</b> ($) em cotas de um fundo Safra. </div>
+                            <div class="d-flex flex-justify-end w-100 mt-2">
+                                <span class="material-icons fg-gray">check_circle</span>
+                            </div>                                    
+                        </div>                                
+                    </div>
+                    <hr class="bg-gray" width="3" size="100" style="height:60px">
+                    <div class="card bd-gray fg-gray" style="box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05);border-radius: 4px;width:450px">                                
+                        <div class="card-content p-4 d-flex flex-justify-center flex-align-center flex-column">
+                            <div class="text-center h5 d-flex flex-align-center">Aporte mensal por 3 meses <span class="ml-2 material-icons">calendar_today</span></div>
+                            <div class="text-small text-left mt-2">
+                                <div class="d-flex flex-align-center">- Selo investidor iniciante <span class="ml-2 material-icons" style="color:#cd7f32">verified</span></div>                                
+                                <div>- <b>Investback</b> ($$) em cotas de um fundo Safra.</div>
                             </div>
-                        </div>
-                        <div class="cell-sm-12 cell-lg-4">
-                            <div class="card border-none" style="box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05);border-radius: 4px;">                                
-                                <div class="card-content p-4 d-flex flex-column">
-                                    <div class="fg-gold-safra h5">Investir</div>
-                                    <div class="fg-blue-safra text-small mt-2">Venha montar seu patrimônio com a gente.</div>
-                                    <div class="d-flex flex-justify-end w-100 mt-2">
-                                        <a href="#" class="fg-blue-safra text-small ">Saiba mais</a>
-                                    </div>                                    
-                                </div>                                 
-                            </div>                        
-                        </div>
-                        <div class="cell-sm-12 cell-lg-4">
-                            <div class="card border-none bg-gold-safra" style="box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05);border-radius: 4px;">                                
-                                <div class="card-content p-4 d-flex flex-column">
-                                    <div class="fg-white h5">Safra play</div>
-                                    <div class="fg-blue-safra text-small mt-2">Acompanhe sua jornada de investimentos.</div>
-                                    <div class="d-flex flex-justify-end w-100 mt-2">
-                                        <a href="play" class="fg-blue-safra text-small ">Saiba mais</a>
-                                    </div>                                    
-                                </div>                                 
+                            <div class="d-flex flex-justify-end w-100 mt-2">
+                                <span class="material-icons fg-gray">check_circle</span>
+                            </div>                                    
+                        </div>                                
+                    </div>
+                    <hr class="bg-gray" width="3" size="100" style="height:60px">
+                    <div class="card bd-gray fg-gray" style="box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05);border-radius: 4px;width:450px">                                
+                        <div class="card-content p-4 d-flex flex-justify-center flex-align-center flex-column">
+                            <div class="text-center h5 d-flex flex-align-center">Aporte mensal por 6 meses ou 50 mil investidos</div>
+                            <div class="text-small text-left mt-2">
+                                <div class="d-flex flex-align-center">- Selo investidor em ascensão <span class="ml-2 material-icons" style="color:#b8cad4">verified</span></div>                                
+                                <div>- <b>Investback</b> ($$$) em cotas de um fundo Safra.</div>
+                                <div>- <b>Taxas</b> de administração e <b>corretagem diferenciadas</b>.</div>
                             </div>
-                        </div>
-                    </div>                    
-                </div>
+                            <div class="d-flex flex-justify-end w-100 mt-2">
+                                <span class="material-icons fg-gray">check_circle</span>
+                            </div>                                    
+                        </div>                                
+                    </div>
+                    <hr class="bg-gray" width="3" size="100" style="height:60px">
+                    <div class="card bd-gray fg-gray" style="box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05);border-radius: 4px;width:450px">                                
+                        <div class="card-content p-4 d-flex flex-justify-center flex-align-center flex-column">
+                            <div class="text-center h5 d-flex flex-align-center">Aporte mensal por 12 meses ou 500 mil investidos</div>
+                            <div class="text-small text-left mt-2">
+                                <div class="d-flex flex-align-center">- Selo investidor em profissional <span class="ml-2 material-icons" style="color:#ffbf00">verified</span></div>                                
+                                <div>- <b>Investback</b> ($$$$) em cotas de um fundo Safra.</div>
+                                <div>- Assessoria <b>especializada</b>.</div>
+                                <div>- <b>Curso</b> com os nossos especialistas.</div>
+                            </div>
+                            <div class="d-flex flex-justify-end w-100 mt-2">
+                                <span class="material-icons fg-gray">check_circle</span>
+                            </div>                                    
+                        </div>                                
+                    </div>
+                    <hr class="bg-gray" width="3" size="100" style="height:60px">
+                    <div class="card bd-gray fg-gray" style="box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.05);border-radius: 4px;width:450px">                                
+                        <div class="card-content p-4 d-flex flex-justify-center flex-align-center flex-column">
+                            <div class="text-center h5 d-flex flex-align-center">Aporte mensal por 24 meses ou 1MM investidos</div>
+                            <div class="text-small text-left mt-2">
+                                <div class="d-flex flex-align-center">- Selo investidor em expert <span class="ml-2 material-icons" style="color:#401060">verified</span></div>                                
+                                <div>- <b>Investback</b> ($$$$$) em cotas de um fundo Safra.</div>
+                                <div>- Programa fidelidade (pontuação por aporte).</div>                                   
+                            </div>
+                            <div class="d-flex flex-justify-end w-100 mt-2">
+                                <span class="material-icons fg-gray">check_circle</span>
+                            </div>                                    
+                        </div>                                
+                    </div>
+                
             </div>
+            
             <div class="d-flex flex-justify-end flex-align-center p-4">
                 <div class="pr-4">
                     <img src="https://raw.githubusercontent.com/reisricardo/static/master/logo-safra-open.svg" height="22.5">                    
