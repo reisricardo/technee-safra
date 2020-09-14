@@ -4,7 +4,7 @@
 
 **Safra Open a mais completa plataforma Open Banking.**
 
-#Descrição
+##Descrição
 A plataforma Safra Open foi desenvolvida durante o Hackathon Technee do Banco Safra.
 Foi implementada como um serviço em **Python + Flask** utilizando a biblioteca **Flask-RESTX**. Utiliza o mecanismo de template **Jinja** para prover todo o Front-end.
 
@@ -12,14 +12,14 @@ Foi implementada como um serviço em **Python + Flask** utilizando a biblioteca 
   <img width=250 src="https://raw.githubusercontent.com/reisricardo/static/master/arq2.png">
 </p>
 
-#Pré-Requisitos
+##Pré-Requisitos
 - Python 3.6+
 - Banco de Dados MySQL 8.0 (Schema no repositório)
 
-#Organização
+##Organização
 ![](https://raw.githubusercontent.com/reisricardo/static/master/org.png)
 
-#Configuração
+##Configuração
 O arquivo **settings.py**, contém todas as configurações para o correto funcionamento da aplicação
 
 Os dados de conexão com o MySQL devem ser editados de acordo com a instância da máquina.
@@ -31,7 +31,7 @@ Os dados de conexão com o MySQL devem ser editados de acordo com a instância d
     DATABASE_HOST = '127.0.0.1'
     DATABASE_PORT = '3306'
 
-#Rodando
+##Rodando
 
 - Instalando a biblioteca [virtual env](https://pypi.org/project/virtualenv/ "virtual env")
 
@@ -58,5 +58,4 @@ python app.py
 ![](https://raw.githubusercontent.com/reisricardo/static/master/run.png)
 
 
-#Time 9
-###End
+##Time 9
