@@ -62,7 +62,14 @@ pip install -r requirements.txt
 python app.py
 ```
 
+
 ![](https://raw.githubusercontent.com/reisricardo/static/master/run.png)
+
+
+- Visualizando a documentação da API
+```bash
+http://127.0.0.1:8000/open-banking/v1
+```
 
 
 ## Time 9
