@@ -1,14 +1,14 @@
 <p align="center">
-  <img width="250" src="https://raw.githubusercontent.com/yargs/yargs/master/yargs-logo.png">
+  <img width="250" src="https://raw.githubusercontent.com/reisricardo/static/master/logo-safra-open.svg">
 </p>
-<h1 align="center"> Safra Open </h1>
 <p align="center">
-  <b>Safra Open a melhor plataforma Open Banking.</b>
+  <b>Safra Open a mais completa plataforma Open Banking.</b>
 </p>
 
 <br>
 
-![![Conventional Commits][conventional-commits-image]][conventional-commits-url]
+## Description
+A plataforma Safra Open foi desenvolvida durante o Hackathon Technee do Banco Safra.
 
 ## Documentation
 
