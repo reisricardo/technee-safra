@@ -49,6 +49,13 @@ virtualenv venv
 ```bash
 source venv/Scripts/Activate
 ```
+
+- Instalando os requirements.txt
+
+```bash
+pip install -r requirements.txt
+```
+
 - Rodando a aplicação
 
 ```bash
