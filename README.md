@@ -70,6 +70,7 @@ python app.py
 ```bash
 http://127.0.0.1:8000/open-banking/v1
 ```
+![](https://raw.githubusercontent.com/reisricardo/static/master/api.png)
 
 
 ## Time 9
